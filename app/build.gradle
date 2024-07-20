@@ -1,0 +1,72 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.kotlin.android)
+}
+
+android {
+    namespace 'com.diksh.moviesapp'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.diksh.moviesapp"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigFields "String", "API_KEY", "\"ee8660728d71914474bd838bd6f29954\""
+        buildConfigFields "String", "BASE_URL","\"https://api.themoviedb.org/3\""
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures{
+        dataBinding = true
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.activity
+    implementation libs.androidx.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.lifecycle.viewmodel.savedstate
+//    ksp libs.androidx.lifecycle.compiler
+
+    implementation libs.androidx.room.runtime
+//    ksp libs.androidx.room.compiler
+
+    implementation libs.kotlinx.coroutines.android
+
+    implementation libs.dagger
+    annotationProcessor libs.dagger.compiler
+
+    implementation 'com.squareup.retrofit2:retrofit:2.11.0'
+    implementation libs.gson
+    implementation(libs.logging.interceptor)
+
+    implementation libs.glide
+
+}
